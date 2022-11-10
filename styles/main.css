@@ -1,0 +1,70 @@
+@font-face {
+    font-family: applefont1;
+    src: url("../fonts/AppleSDGothicNeoL.woff2") format("woff2")
+}
+
+@font-face {
+    font-family: applefont2;
+    src: url("../fonts/AppleSDGothicNeoM.woff2") format("woff2")
+}
+
+
+body {
+    margin: 0px;
+    background-color: rgb(34, 35, 43)
+}
+
+body > * {
+    user-select: none;
+}
+
+.navbar {
+    background-color: rgb(22, 22, 23);
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition: all .5s ease-in-out;
+}
+
+.navbar:hover {
+    background-color: rgb(122, 122, 122);
+}
+
+.navbar > * {
+    color: white;
+    user-select: none;
+    margin-left: 30px;
+    font-family: applefont2;
+}
+
+.navbar > img {
+    width: 64px;
+    height: 64px;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.main {
+    width: 80vw;
+}
+
+.main > * {
+    font-family: applefont1;
+    color: white;
+}
+
+.main > ul > li > * {
+    display: inline-block;
+}
+
+.main > ul > li > ul {
+    display: block;
+}
+
+a {
+    color: rgb(86, 156, 215);
+}
