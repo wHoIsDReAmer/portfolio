@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f80e513a-1f70-4b09-867a-35b920dee8ee" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/portal.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/styles/portal.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/my_img.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/my_img.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/portal.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/portal.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +36,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -69,6 +68,8 @@
       <workItem from="1668954953561" duration="5281000" />
       <workItem from="1668995179633" duration="7817000" />
       <workItem from="1669018375822" duration="2106000" />
+      <workItem from="1669168527156" duration="663000" />
+      <workItem from="1669252733471" duration="548000" />
     </task>
     <servers />
   </component>

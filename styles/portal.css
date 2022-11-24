@@ -4,15 +4,19 @@
     0% {
         background-position: 0% 0%;
     }
-    100% {
+    50% {
         background-position: 100% 0%;
+    }
+
+    100% {
+        background-position: 0% 0%;
     }
 }
 
 body {
     margin: 0px;
     background-color: #9d9d9d;
-    background-image: linear-gradient(to right, #d63eff, #6885ff, #6885ff, #d63eff, #d63eff, #6885ff, #6885ff);
+    background-image: linear-gradient(to right, #3396ff, #64c6ff);
     background-position: 0% 0%;
     background-size: 300% 300%;
     background-repeat: no-repeat;
@@ -25,7 +29,7 @@ body::before {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(31, 98, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 body > * {
@@ -77,12 +81,12 @@ body > * {
 .box .clickbox {
     width: 10vw;
     height: 10vh;
-    border: 1px #81a7ff solid;
     border-radius: 30px;
     transition: width .5s ease-in-out;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: white;
 }
 
 .box .clickbox img {
@@ -92,7 +96,7 @@ body > * {
 
 .box .clickbox > * {
     margin: 10px;
-    color: white;
+    color: black;
 }
 
 .box .clickbox:hover {
