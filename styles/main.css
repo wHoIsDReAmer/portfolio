@@ -101,6 +101,17 @@ dw::after {
     bottom: 0px;
 }
 
+@media screen and (max-width: 700px) {
+    .featured_works {
+        grid-template-columns: 1fr;
+    }
+
+    .featured_works .work_box {
+        width: 40vw;
+        height: 40vw;
+    }
+}
+
 .featured_works .work_box .under_box > * {
     margin-left: 10px;
 }

@@ -2,9 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f80e513a-1f70-4b09-867a-35b920dee8ee" name="Changes" comment="Changes">
+      <change beforePath="$PROJECT_DIR$/.fleet/run.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.fleet/settings.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/my_img.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/my_img.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/portal.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/portal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fonts/AppleSDGothicNeoB.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fonts/AppleSDGothicNeoEB.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fonts/AppleSDGothicNeoH.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fonts/AppleSDGothicNeoL.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fonts/AppleSDGothicNeoM.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fonts/AppleSDGothicNeoR.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fonts/AppleSDGothicNeoSB.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fonts/AppleSDGothicNeoT.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fonts/AppleSDGothicNeoUL.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/main.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,11 +40,14 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2HeayEsArfX3gpiOdAoSIBv2M2X" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -41,6 +55,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\포트폴리오" />
       <recent name="C:\Users\WHOISLCW\Desktop\portfolio\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -70,6 +85,9 @@
       <workItem from="1669018375822" duration="2106000" />
       <workItem from="1669168527156" duration="663000" />
       <workItem from="1669252733471" duration="548000" />
+      <workItem from="1669425613023" duration="37000" />
+      <workItem from="1669425663762" duration="48000" />
+      <workItem from="1669425714320" duration="358000" />
     </task>
     <servers />
   </component>
