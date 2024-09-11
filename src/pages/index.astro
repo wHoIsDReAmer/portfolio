@@ -1,0 +1,39 @@
+---
+// import MyComponent from '../components/MyComponent.svelte';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import ProjectContainer from '../components/project/ProjectContainer.astro';
+import ProjectBox from '../components/project/ProjectBox.svelte';
+
+import { projects } from '../constants/projects';
+---
+
+<Layout title="Home | 이찬욱">
+	<Header />
+
+	<div class="m-20 mt-10">
+		<h1 class="text-xl font-bold">자기소개</h1>
+		<p>만나서 반갑습니다!</p>
+		<p>컴퓨터 과학을 사랑하고 근본을 이해하는 것을 즐기는 소프트웨어 엔지니어입니다.</p>
+
+		<h1 class="text-xl font-bold mt-5">기술 스택</h1>
+		<div class="flex flex-row gap-2">
+			<img src="https://img.shields.io/badge/rust-%23000000.svg?&style=for-the-badge&logo=rust&logoColor=white" />
+			<img src="https://img.shields.io/badge/go-%2300ADD8.svg?&style=for-the-badge&logo=go&logoColor=white" />
+			<img src="https://img.shields.io/badge/typescript-%23007ACC.svg?&style=for-the-badge&logo=typescript&logoColor=white" />
+			<img src="https://img.shields.io/badge/javascript-%23F7DF1E.svg?&style=for-the-badge&logo=javascript&logoColor=black" />
+			<img src="https://img.shields.io/badge/tailwindcss-%2306B6D4.svg?&style=for-the-badge&logo=tailwindcss&logoColor=white" />
+			<!-- <img src="https://img.shields.io/badge/react-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB" /> -->
+			<img src="https://img.shields.io/badge/vue-%2335495e.svg?&style=for-the-badge&logo=vue.js&logoColor=%234FC08D" />
+			<img src="https://img.shields.io/badge/svelte-%23f14131.svg?&style=for-the-badge&logo=svelte&logoColor=white" />
+		</div>
+
+		<h1 class="text-xl font-bold mt-5">Featured Works</h1>
+		<ProjectContainer>
+			{projects.map((project) => (
+				<ProjectBox project={project} client:load/>
+			))}
+		</ProjectContainer>
+	</div>
+
+</Layout>
