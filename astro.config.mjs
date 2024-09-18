@@ -7,7 +7,6 @@ import vercel from "@astrojs/vercel/serverless";
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), svelte()],
-  base: '/portfolio/',
   output: 'hybrid',
   site: 'https://whoisdreamer.github.io/portfolio/',
   adapter: vercel()
