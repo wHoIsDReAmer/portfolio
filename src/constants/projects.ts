@@ -21,7 +21,7 @@ export const projects: Project[] = [
         date: "2024-05 ~ 2024-09",
         // imageUrl: "https://blog.kakaocdn.net/dn/YwNMz/btqNIGN5KFZ/bOZVfObi8uSjxF6smcK0D0/img.jpg",
         imageUrl: null,
-        techStack: ["Go", "GraphQL(gqlgen)", "Fiber", "PostgreSQL", "Redis", "RabbitMQ", "Vue", "Github Actions", "AWS Fargate", "AWS ECS"],
+        techStack: ["Go", "GraphQL(gqlgen)", "Fiber", "PostgreSQL", "Redis", "SQS", "Vue", "Github Actions", "AWS Fargate", "AWS ECS"],
 
         learnedThing: [
             "프로젝트가 진행됨에 따라 잦은 리팩토링으로 초기에 아키텍처를 잘 설계하는 것이 중요하다는 것을 배웠습니다.",
@@ -33,6 +33,22 @@ export const projects: Project[] = [
             "잦은 리팩토링으로 구조 최적화가 어려웠습니다.",
             "위와 같은 이유로 DI의 중요성에 대해 알게 되었습니다. 초기에 AppState 구조체를 만들어 관리하다보니 비대해져 관리가 어려웠습니다.",
             "백오피스 프론트엔드를 어떻게 구축할지 고민이 있었습니다.",
+        ],
+        githubUrl: null
+    },
+    {
+        name: "실시간 스포츠 경기 제공 API (Private)",
+        shortDescription: "실시간 스포츠 경기 제공 API",
+        description: "개인 프로젝트로 진행한 실시간 스포츠 경기 제공 API입니다.",
+        date: "2024-02 ~ 2024-04",
+        imageUrl: null,
+        techStack: ["Java", "Rust", "MSK(Amazon Managed Streaming for Kafka)", "DynamoDB", "Github Actions", "AWS Fargate", "AWS ECS", "gRPC"],
+        learnedThing: [
+            "NoSQL인 DynamoDB를 사용해보면서 비정형 데이터를 어떻게 저장할 수 있는지 배웠습니다.",
+            "실시간 처리를 위해 카프카를 사용해보면서 실시간 처리를 위한 카프카에 대해 어떻게 설계할 수 있는지 배웠습니다.",
+        ],
+        hardThing: [
+            "DynamoDB에서 복잡한 비즈니스 로직을 처리하기 어려워 수많은 리팩토링을 진행했습니다.",
         ],
         githubUrl: null
     },
