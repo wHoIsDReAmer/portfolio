@@ -40,7 +40,7 @@ export const projects: Project[] = [
         name: "실시간 스포츠 경기 제공 API (Private)",
         shortDescription: "실시간 스포츠 경기 제공 API",
         description: "개인 프로젝트로 진행한 실시간 스포츠 경기 제공 API입니다.",
-        date: "2024-02 ~ 2024-04",
+        date: "2024-01 ~ 2024-04",
         imageUrl: null,
         techStack: ["Java", "Rust", "MSK(Amazon Managed Streaming for Kafka)", "DynamoDB", "Github Actions", "AWS Fargate", "AWS ECS", "gRPC"],
         learnedThing: [
