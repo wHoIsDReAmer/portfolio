@@ -8,6 +8,7 @@ import vercel from "@astrojs/vercel/serverless";
 export default defineConfig({
   integrations: [tailwind(), svelte()],
   output: 'hybrid',
+  base: '/portfolio/',
   site: 'https://whoisdreamer.github.io/portfolio/',
   adapter: vercel()
 });
