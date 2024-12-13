@@ -2,22 +2,13 @@
   import {writable } from 'svelte/store';
   import ProjectModal from './ProjectModal.svelte';
   import type { Project } from '../../constants/projects';
+  import { getGradientColor } from '../../utils/color';
 
   const isOpen = writable(false);
 
   export let project: Project;
 
-  function getRandomColor() {
-    return Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
-  }
-
-  function generateGradient() {
-      const color1 = getRandomColor();
-      const color2 = getRandomColor();
-      return `linear-gradient(135deg, #${color1}, #${color2})`;
-  }
-
-  function truncateTitle(title: string, maxLength: number = 8) {
+  function truncateTitle(title: string, maxLength: number = 10) {
     return title.length > maxLength ? title.slice(0, maxLength) + '...' : title;
   }
 </script>
@@ -32,9 +23,9 @@
   on:keydown
 >
     {#if project.imageUrl}
-      <img src={project.imageUrl} alt={project.name} class="w-full h-48 object-cover rounded-t" />
+      <img src={project.imageUrl} alt={project.name} class="w-full h-64 object-cover rounded-t" />
     {:else}
-      <div class="w-full h-48 rounded-t flex items-center justify-center text-4xl font-bold text-white" style="background: {generateGradient()}">
+      <div class="w-full h-64 rounded-t flex items-center justify-center text-4xl font-bold text-white" style="background: {getGradientColor(project.name)}">
         {truncateTitle(project.name)}
       </div>
     {/if}

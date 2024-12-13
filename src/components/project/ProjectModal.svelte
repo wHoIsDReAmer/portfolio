@@ -3,25 +3,16 @@
   import { onMount } from "svelte";
   export let isOpen = false;
   export let project: Project;
+  import { getGradientColor, getColorFromName } from '../../utils/color';
 
   function closeModal() {
     isOpen = false;
   }
 
-  function getRandomColor() {
-    return Math.floor(Math.random() * 16777215).toString(16);
-  }
-
-  function generateGradient() {
-    const color1 = getRandomColor();
-    const color2 = getRandomColor();
-    return `linear-gradient(135deg, #${color1}, #${color2})`;
-  }
-
   let gradient: string;
 
   onMount(() => {
-    gradient = generateGradient();
+    gradient = getGradientColor(project.name);
   });
 </script>
 
@@ -66,7 +57,7 @@
       <p class="text-lg font-bold mt-4">⚙️ 사용한 기술 스택</p>
       <div class="flex flex-row gap-2">
         {#each project.techStack as tech}
-          <img src={"https://img.shields.io/badge/" + tech + "-" + getRandomColor()} alt={tech} class="h-6" />
+          <img src={"https://img.shields.io/badge/" + tech + "-" + getColorFromName(tech)} alt={tech} class="h-6" />
         {/each}
       </div>
 
