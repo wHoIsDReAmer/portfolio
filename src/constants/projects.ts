@@ -3,20 +3,44 @@ export interface Project {
     shortDescription: string;
     date: string;
     description: string;
-    
-    imageUrl: string | null;
+
     techStack: string[];
 
-    /** 비공개 프로젝트 여부. true면 'Private' 배지가 붙는다. */
     private?: boolean;
 
-    learnedThing: string[];
-    hardThing: string[];
-
-    githubUrl: string | null;
+    imageUrl?: string | null;
+    learnedThing?: string[];
+    hardThing?: string[];
+    githubUrl?: string | null;
 }
 
 export const projects: Project[] = [
+    {
+      name: "loco-protocol-rs",
+      private: true,
+      shortDescription: "카카오톡 LOCO 프로토콜 러스트 구현체",
+      description: "애플리케이션 구조 리버싱 카카오톡 LOCO 프로토콜 구현",
+      date: "2026-08-19 ~",
+      imageUrl: "/projects/loco-protocol.png",
+      techStack: ["Reversing", "Static Analysis", "Rust"]
+    },
+    {
+      name: "RabbiTTY",
+      shortDescription: "크로스플랫폼 터미널 에뮬레이터",
+      description: "Rust와 WGSL로 만든 크로스플랫폼 터미널 에뮬레이터",
+      date: "2025-12 ~",
+      imageUrl: "/projects/rabbitty.jpg",
+      techStack: ["Rust", "WGSL"],
+      githubUrl: "https://github.com/wHoIsDReAmer/RabbiTTY"
+    },
+    {
+      name: "flow-wallet",
+      shortDescription: "High-Level HD Wallet SDK",
+      description: "HD 지갑 키 파생을 다루는 Rust 라이브러리",
+      date: "2026-01 ~ 2026-06",
+      techStack: ["Rust", "HD Wallet"],
+      githubUrl: "https://github.com/wHoIsDReAmer/flow-wallet"
+    },
     {
         name: "전자상거래 서비스",
         private: true,
@@ -63,7 +87,7 @@ export const projects: Project[] = [
         description: "PoC 목적으로 만든 프로그램입니다.<br>여러 파일을 한 실행 파일에 묶어 배포하는 프로그램입니다.<br>Windows에서만 동작합니다.",
 
         date: "2023-03-24",
-        imageUrl: null,
+        imageUrl: "/projects/binder.png",
 
         techStack: ["Rust", "Windows API"],
         learnedThing: [

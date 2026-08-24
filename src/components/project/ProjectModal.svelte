@@ -68,19 +68,23 @@
         <h3>프로젝트 설명</h3>
         <p class="prose">{@html project.description}</p>
 
-        <h3>배운 점</h3>
-        <ul class="prose">
-          {#each project.learnedThing as thing}
-            <li>{thing}</li>
-          {/each}
-        </ul>
+        {#if project.learnedThing?.length}
+          <h3>배운 점</h3>
+          <ul class="prose">
+            {#each project.learnedThing as thing}
+              <li>{thing}</li>
+            {/each}
+          </ul>
+        {/if}
 
-        <h3>어려웠던 점</h3>
-        <ul class="prose">
-          {#each project.hardThing as thing}
-            <li>{thing}</li>
-          {/each}
-        </ul>
+        {#if project.hardThing?.length}
+          <h3>어려웠던 점</h3>
+          <ul class="prose">
+            {#each project.hardThing as thing}
+              <li>{thing}</li>
+            {/each}
+          </ul>
+        {/if}
       </div>
     </article>
   </div>
