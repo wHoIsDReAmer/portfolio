@@ -50,6 +50,9 @@
       <div class="content">
         <div class="titleRow">
           <h2>{project.name}</h2>
+          {#if project.private}
+            <span class="badge">Private</span>
+          {/if}
           {#if project.githubUrl}
             <a class="gh" href={project.githubUrl} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
           {/if}
@@ -157,6 +160,18 @@
     font-size: 1.15rem;
     font-weight: 700;
     word-break: keep-all;
+  }
+
+  .badge {
+    align-self: center;
+    padding: 0.1rem 0.45rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    text-transform: uppercase;
   }
 
   .gh {

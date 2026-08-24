@@ -26,6 +26,9 @@
         <span class="body">
           <span class="head">
             <span class="name">{project.name}</span>
+            {#if project.private}
+              <span class="badge">Private</span>
+            {/if}
             <span class="date">{project.date}</span>
           </span>
           <span class="desc">{project.shortDescription}</span>
@@ -110,6 +113,18 @@
   .row:hover .name,
   .row:focus-visible .name {
     color: var(--accent);
+  }
+
+  .badge {
+    flex: none;
+    padding: 0.05rem 0.4rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    text-transform: uppercase;
   }
 
   .date {

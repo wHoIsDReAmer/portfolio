@@ -7,6 +7,9 @@ export interface Project {
     imageUrl: string | null;
     techStack: string[];
 
+    /** 비공개 프로젝트 여부. true면 'Private' 배지가 붙는다. */
+    private?: boolean;
+
     learnedThing: string[];
     hardThing: string[];
 
@@ -15,7 +18,8 @@ export interface Project {
 
 export const projects: Project[] = [
     {
-        name: "전자상거래 서비스 (Private)",
+        name: "전자상거래 서비스",
+        private: true,
         shortDescription: "전자상거래 서비스",
         description: "개인 외주로 진행한 전자상거래 서비스입니다.<br>백오피스 프론트엔드는 Vue, 백엔드는 Go를 사용했습니다.<br>Layered Architecture를 사용하여 아키텍처를 설계했습니다.<br>최대한 Go 코드의 컨벤션과 standard를 맞추려 노력했습니다.",
         date: "2024-05 ~ 2024-09",
@@ -37,7 +41,8 @@ export const projects: Project[] = [
         githubUrl: null
     },
     {
-        name: "실시간 스포츠 경기 제공 API (Private)",
+        name: "실시간 스포츠 경기 제공 API",
+        private: true,
         shortDescription: "실시간 스포츠 경기 제공 API",
         description: "개인 프로젝트로 진행한 실시간 스포츠 경기 제공 API입니다.",
         date: "2024-01 ~ 2024-04",
