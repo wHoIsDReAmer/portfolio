@@ -6,6 +6,5 @@ import svelte from '@astrojs/svelte';
 export default defineConfig({
   integrations: [tailwind({ applyBaseStyles: false }), svelte()],
   output: 'static',
-  base: '/portfolio/',
-  site: 'https://whoisdreamer.github.io/portfolio/',
+  site: 'https://devcw.xyz',
 });
