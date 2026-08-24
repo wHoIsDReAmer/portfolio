@@ -1,16 +1,39 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
+import Section from '../components/Section.astro';
+
+const channels = [
+	{ label: 'Email', value: 'neverprogrammer@gmail.com', href: 'mailto:neverprogrammer@gmail.com' },
+	{ label: 'Phone', value: '010-6496-9410', href: 'tel:+821064969410' },
+	{ label: 'GitHub', value: 'wHoIsDReAmer', href: 'https://github.com/wHoIsDReAmer' },
+	{ label: 'Blog', value: 'velog.io/@devcw', href: 'https://velog.io/@devcw' },
+];
 ---
 
-<Layout title="Contact | 이찬욱">
-    <Header />
+<Layout title="Contact — 이찬욱">
+	<Section title="Contact">
+		<p class="mb-7 text-[0.92rem] leading-relaxed text-muted [word-break:keep-all]">
+			하고 싶은 이야기가 있다면 편하게 연락주세요.
+		</p>
 
-    <section class="contact-section p-6">
-        <h1 class="text-2xl font-bold mb-4">연락처</h1>
-        <p class="mb-4">저와 대화를 원하신다면, 아래의 연락처를 통해 편하게 연락 주시기 바랍니다.</p>
-        <p class="mb-4">이메일: <a href="mailto:neverprogrammer@gmail.com" class="text-blue-500">neverprogrammer@gmail.com</a></p>
-        <p class="mb-4">전화번호: <a href="tel:+8210-3333-3333" class="text-blue-500">010-6496-9410</a></p>
-        <p class="font-semibold">감사합니다!</p>
-    </section>
+		<dl class="divide-y divide-line border-y border-line">
+			{
+				channels.map(({ label, value, href }) => (
+					<div class="flex items-baseline gap-4 py-3">
+						<dt class="w-16 flex-none text-xs uppercase tracking-wide text-muted">{label}</dt>
+						<dd>
+							<a
+								href={href}
+								target={href.startsWith('http') ? '_blank' : undefined}
+								rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+								class="text-sm transition-colors hover:text-accent"
+							>
+								{value}
+							</a>
+						</dd>
+					</div>
+				))
+			}
+		</dl>
+	</Section>
 </Layout>

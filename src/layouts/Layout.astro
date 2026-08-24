@@ -1,45 +1,50 @@
 ---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
 interface Props {
 	title: string;
+	description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description = '컴퓨터 과학을 사랑하는 소프트웨어 엔지니어 이찬욱의 개인 웹사이트' } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 
 <!doctype html>
-<html lang="en" class="dark:bg-gray-900 dark:text-white">
+<html lang="ko">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Welcome to my personal website" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
 		<title>{title}</title>
-		
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+
+		{/* 다크 모드를 페인트 전에 확정해 깜빡임(FOUC)을 막는다. */}
+		<script is:inline>
+			(() => {
+				const stored = localStorage.getItem('theme');
+				const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				if (stored === 'dark' || (!stored && prefersDark)) {
+					document.documentElement.classList.add('dark');
+				}
+			})();
+		</script>
 	</head>
 
-	<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white flex flex-col min-h-screen">
-		<slot />
-		<Footer />
+	<body class="min-h-screen bg-bg text-fg antialiased">
+		<div class="mx-auto flex min-h-screen w-full max-w-content flex-col px-6 sm:px-8">
+			<Header />
+			<main class="flex-1 pb-24">
+				<slot />
+			</main>
+			<Footer />
+		</div>
 	</body>
 </html>
-
-<style is:global>
-	@tailwind base;
-	@tailwind components;
-	@tailwind utilities;
-
-	@layer base {
-		html {
-			font-family: 'Noto Sans KR', sans-serif;
-		}
-		
-		code {
-			@apply font-mono;
-		}
-	}
-</style>
