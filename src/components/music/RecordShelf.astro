@@ -60,20 +60,42 @@ import { getGradientColor } from '../../utils/color';
 		--drop: 26px; /* 판이 위로 빠져나오는 거리 */
 	}
 
+	/* 레코드 크레이트처럼 한 줄로 쭉 늘어놓고 옆으로 넘겨본다. */
 	.shelf__grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(var(--cover), 1fr));
-		column-gap: var(--gap-x);
-		row-gap: 0;
+		display: flex;
+		gap: 0 var(--gap-x);
 		list-style: none;
 		margin: 0;
 		padding: 0;
+		overflow-x: auto;
+		overflow-y: hidden;
+		scroll-snap-type: x proximity;
+		/* 오른쪽 끝만 은은하게 페이드해 더 넘길 수 있음을 암시한다. */
+		-webkit-mask-image: linear-gradient(90deg, #000 90%, transparent);
+		mask-image: linear-gradient(90deg, #000 90%, transparent);
+		scrollbar-width: thin;
+		scrollbar-color: var(--line) transparent;
+	}
+
+	.shelf__grid::-webkit-scrollbar {
+		height: 6px;
+	}
+
+	.shelf__grid::-webkit-scrollbar-thumb {
+		background: var(--line);
+		border-radius: 3px;
+	}
+
+	.shelf__grid::-webkit-scrollbar-track {
+		background: transparent;
 	}
 
 	.lp {
 		position: relative;
-		/* 판이 위로 나올 공간(--drop) + 선반 두께 */
-		padding-top: var(--drop);
+		flex: 0 0 var(--cover);
+		scroll-snap-align: start;
+		/* 판이 위로 나올 공간(--drop, 잘림 방지 여유 포함) + 선반 두께 */
+		padding-top: calc(var(--drop) + 10px);
 		padding-bottom: var(--shelf-h);
 	}
 
