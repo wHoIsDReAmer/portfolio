@@ -15,9 +15,14 @@ import { getGradientColor } from '../../utils/color';
 							href={album.url ?? undefined}
 							target={album.url ? '_blank' : undefined}
 							rel={album.url ? 'noopener noreferrer' : undefined}
+							title={`${album.title} — ${album.artist}${album.year ? ` (${album.year})` : ''}`}
 						>
 							<div class="lp__stack">
-								<div class="lp__disc" aria-hidden="true" />
+								<div class="lp__disc" aria-hidden="true">
+									<div class="lp__platter">
+										<div class="lp__label" />
+									</div>
+								</div>
 								<div class="lp__sleeve">
 									{album.coverUrl ? (
 										<img
@@ -34,14 +39,9 @@ import { getGradientColor } from '../../utils/color';
 											<span>{album.title}</span>
 										</div>
 									)}
+									<span class="lp__spine" aria-hidden="true" />
+									<span class="lp__sheen" aria-hidden="true" />
 								</div>
-							</div>
-
-							<div class="lp__meta">
-								<p class="lp__title">{album.title}</p>
-								<p class="lp__artist">
-									{album.year ? `${album.artist} · ${album.year}` : album.artist}
-								</p>
 							</div>
 						</Tag>
 					</li>
@@ -49,15 +49,22 @@ import { getGradientColor } from '../../utils/color';
 			})
 		}
 	</ul>
-
-	<div class="shelf__board" aria-hidden="true"></div>
 </div>
 
 <style>
+	.shelf {
+		/* 커버 한 변 + 선반 여백. 배경 선반 줄무늬 주기의 기준이 된다. */
+		--cover: 104px;
+		--gap-x: 14px;
+		--shelf-h: 10px; /* 나무 선반 두께 */
+		--drop: 26px; /* 판이 위로 빠져나오는 거리 */
+	}
+
 	.shelf__grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
-		gap: 2rem 1.5rem;
+		grid-template-columns: repeat(auto-fill, minmax(var(--cover), 1fr));
+		column-gap: var(--gap-x);
+		row-gap: 0;
 		list-style: none;
 		margin: 0;
 		padding: 0;
@@ -65,18 +72,41 @@ import { getGradientColor } from '../../utils/color';
 
 	.lp {
 		position: relative;
+		/* 판이 위로 나올 공간(--drop) + 선반 두께 */
+		padding-top: var(--drop);
+		padding-bottom: var(--shelf-h);
 	}
 
-	/* 판을 뽑은 카드가 이웃 위로 올라오도록 */
+	/* 각 칸 아래에 이어지는 나무 선반. gap-x가 0이 아니어도
+	   음영을 좌우로 늘려 칸 사이 틈을 메워 한 장의 판자처럼 보이게 한다. */
+	.lp::after {
+		content: '';
+		position: absolute;
+		left: calc(var(--gap-x) / -2);
+		right: calc(var(--gap-x) / -2);
+		bottom: 0;
+		height: var(--shelf-h);
+		background: linear-gradient(
+			180deg,
+			color-mix(in srgb, var(--shelf) 92%, white) 0 2px,
+			var(--shelf) 2px 60%,
+			color-mix(in srgb, var(--shelf) 55%, black) 100%
+		);
+		border-radius: 1px;
+		box-shadow: 0 6px 10px -6px rgba(0, 0, 0, 0.55);
+		z-index: 3;
+	}
+
 	.lp:hover,
 	.lp:focus-within {
-		z-index: 2;
+		z-index: 5;
 	}
 
 	.lp__link {
 		display: block;
 		text-decoration: none;
 		color: inherit;
+		outline: none;
 	}
 
 	.lp__stack {
@@ -84,65 +114,105 @@ import { getGradientColor } from '../../utils/color';
 		aspect-ratio: 1;
 	}
 
-	/* ── 바이닐 ── */
+	/* ───────── 바이닐 ─────────
+	   꺼내기(translateY)와 회전(rotate)을 서로 다른 요소로 분리한다.
+	   - .lp__disc  : 슬리브에서 위로 빠져나오는 이동만 담당 (transition)
+	   - .lp__platter: 회전만 담당 (animation-play-state로 각도를 보존하며 멈춤)
+	   이렇게 하면 호버를 풀 때 회전 각도가 리셋되지 않아 뚝 끊기지 않는다. */
 	.lp__disc {
 		position: absolute;
 		inset: 0;
 		border-radius: 50%;
-		transform: translateX(8%) rotate(0deg);
-		transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-		background:
-			/* 광택 */
-			linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, 0.16) 48%, transparent 55%),
-			/* 스핀들 홀 */
-			radial-gradient(circle at 50% 50%, var(--bg) 0 1.8%, transparent 2.1%),
-			/* 라벨 */
-			radial-gradient(circle at 50% 50%, transparent 0 1.8%, var(--label) 2.1% 21%, transparent 21.4%),
-			/* 그루브 */
-			repeating-radial-gradient(circle at 50% 50%, #1d1d1d 0 2px, #0c0c0c 2px 4px);
-		box-shadow:
-			inset 0 0 0 1px rgba(255, 255, 255, 0.07),
-			0 6px 14px rgba(0, 0, 0, 0.35);
+		/* 슬리브 안에 들어가 살짝만 보이는 상태 */
+		transform: translateY(-4px);
+		transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+		box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
 	}
 
+	.lp__platter {
+		position: absolute;
+		inset: 0;
+		border-radius: 50%;
+		background:
+			/* 바깥 테두리 광택 */
+			radial-gradient(circle at 50% 50%, transparent 0 47.5%, rgba(255, 255, 255, 0.18) 48% 49%, transparent 49.5%),
+			/* 미세 그루브 */
+			repeating-radial-gradient(circle at 50% 50%,
+				#000 0 1px, #1c1c1c 1px 1.6px, #000 1.6px 2.6px),
+			#0a0a0a;
+		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.9);
+		animation: lp-spin 3.6s linear infinite;
+		animation-play-state: paused;
+		will-change: transform;
+	}
+
+	/* 판을 가로지르는 광택 스윕 (판과 함께 돌며 반짝인다) */
+	.lp__platter::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: 50%;
+		background: linear-gradient(125deg,
+			transparent 40%, rgba(255, 255, 255, 0.14) 47%, rgba(255, 255, 255, 0.04) 52%, transparent 60%);
+	}
+
+	.lp__label {
+		position: absolute;
+		inset: 34%;
+		border-radius: 50%;
+		background:
+			/* 스핀들 홀 */
+			radial-gradient(circle at 50% 50%, var(--bg) 0 7%, transparent 7.5%),
+			var(--label);
+		box-shadow:
+			inset 0 0 0 1px rgba(0, 0, 0, 0.25),
+			inset 0 1px 2px rgba(255, 255, 255, 0.25);
+	}
+
+	/* 호버: 판은 위로 슬라이드(transition), 회전은 재생(각도 유지) */
 	.lp:hover .lp__disc,
 	.lp:focus-within .lp__disc {
-		transform: translateX(28%);
-		/* 판이 다 빠져나온 뒤에 돌기 시작하도록 트랜지션 시간만큼 늦춘다. */
-		animation: lp-spin 3.2s linear 0.55s infinite;
+		transform: translateY(calc(-1 * var(--drop) - 4px));
+	}
+
+	.lp:hover .lp__platter,
+	.lp:focus-within .lp__platter {
+		animation-play-state: running;
 	}
 
 	@keyframes lp-spin {
 		to {
-			transform: translateX(28%) rotate(360deg);
+			transform: rotate(360deg);
 		}
 	}
 
-	/* ── 슬리브 ── */
+	/* ───────── 슬리브 ───────── */
 	.lp__sleeve {
 		position: relative;
 		z-index: 1;
 		aspect-ratio: 1;
 		overflow: hidden;
-		border-radius: 2px;
+		border-radius: 2px 3px 3px 2px;
 		background: var(--card);
 		box-shadow:
-			0 1px 2px rgba(0, 0, 0, 0.18),
-			0 8px 20px rgba(0, 0, 0, 0.22);
-		transition:
-			transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+			inset 0 0 0 1px rgba(0, 0, 0, 0.12),
+			0 1px 2px rgba(0, 0, 0, 0.2),
+			0 5px 12px -4px rgba(0, 0, 0, 0.35);
+		transition: transform 0.4s cubic-bezier(0.34, 1.4, 0.5, 1),
 			box-shadow 0.4s ease;
 	}
 
 	.lp:hover .lp__sleeve,
 	.lp:focus-within .lp__sleeve {
-		transform: translateY(-6px);
+		transform: translateY(-3px);
 		box-shadow:
-			0 2px 4px rgba(0, 0, 0, 0.2),
-			0 16px 30px rgba(0, 0, 0, 0.3);
+			inset 0 0 0 1px rgba(0, 0, 0, 0.12),
+			0 2px 4px rgba(0, 0, 0, 0.25),
+			0 14px 24px -6px rgba(0, 0, 0, 0.4);
 	}
 
-	.lp__sleeve img {
+	.lp__sleeve img,
+	.lp__fallback {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
@@ -152,50 +222,49 @@ import { getGradientColor } from '../../utils/color';
 	.lp__fallback {
 		display: flex;
 		align-items: flex-end;
-		width: 100%;
-		height: 100%;
-		padding: 0.65rem;
+		padding: 0.5rem;
 	}
 
 	.lp__fallback span {
-		font-size: 0.8rem;
+		font-size: 0.72rem;
 		font-weight: 700;
-		line-height: 1.25;
+		line-height: 1.2;
 		color: #fff;
-		text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+		text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 		word-break: keep-all;
 	}
 
-	/* ── 텍스트 ── */
-	.lp__meta {
-		margin-top: 0.7rem;
+	/* 왼쪽 접힌 등(spine) — 슬리브 두께감 */
+	.lp__spine {
+		position: absolute;
+		inset: 0 auto 0 0;
+		width: 5px;
+		background: linear-gradient(90deg, rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0));
+		pointer-events: none;
 	}
 
-	.lp__title {
-		font-size: 0.8rem;
-		font-weight: 600;
-		line-height: 1.3;
-		word-break: keep-all;
-		transition: color 0.2s ease;
+	/* 비닐 커버의 반사광 */
+	.lp__sheen {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(115deg,
+			rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 22%, rgba(255, 255, 255, 0) 100%);
+		pointer-events: none;
 	}
 
-	.lp:hover .lp__title,
-	.lp:focus-within .lp__title {
-		color: var(--accent);
+	/* 터치 기기: 상시 판을 살짝 꺼낸 상태로 실물감만 남긴다 */
+	@media (hover: none) {
+		.lp__disc {
+			transform: translateY(-10px);
+		}
 	}
 
-	.lp__artist {
-		margin-top: 0.15rem;
-		font-size: 0.75rem;
-		color: var(--muted);
-	}
-
-	/* ── 선반 ── */
-	.shelf__board {
-		margin-top: 2.5rem;
-		height: 4px;
-		border-radius: 2px;
-		background: linear-gradient(180deg, var(--shelf), color-mix(in srgb, var(--shelf) 70%, black));
-		box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.5);
+	/* 모바일: 커버를 더 작게 잡아 더 빽빽하게 */
+	@media (max-width: 480px) {
+		.shelf {
+			--cover: 82px;
+			--gap-x: 10px;
+			--drop: 20px;
+		}
 	}
 </style>
