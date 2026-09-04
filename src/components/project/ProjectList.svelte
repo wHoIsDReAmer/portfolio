@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Project } from '../../constants/projects';
-  import { getGradientColor } from '../../utils/color';
+  import { getFallbackColor } from '../../utils/color';
   import ProjectModal from './ProjectModal.svelte';
 
   let { projects }: { projects: Project[] } = $props();
@@ -19,7 +19,7 @@
           {#if project.imageUrl}
             <img src={project.imageUrl} alt="" loading="lazy" decoding="async" />
           {:else}
-            <span class="thumb__fill" style="background: {getGradientColor(project.name)}"></span>
+            <span class="thumb__fill" style="background: {getFallbackColor(project.name)}"></span>
           {/if}
         </span>
 

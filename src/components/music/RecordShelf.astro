@@ -1,6 +1,6 @@
 ---
 import { albums } from '../../constants/albums';
-import { getGradientColor } from '../../utils/color';
+import { getFallbackColor } from '../../utils/color';
 ---
 
 <div class="shelf">
@@ -34,7 +34,7 @@ import { getGradientColor } from '../../utils/color';
 									) : (
 										<div
 											class="lp__fallback"
-											style={`background: ${getGradientColor(album.title + album.artist)}`}
+											style={`background: ${getFallbackColor(album.title + album.artist)}`}
 										>
 											<span>{album.title}</span>
 										</div>

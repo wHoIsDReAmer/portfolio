@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Project } from '../../constants/projects';
-  import { getGradientColor } from '../../utils/color';
+  import { getFallbackColor } from '../../utils/color';
 
   interface Props {
     project: Project | null;
@@ -43,7 +43,7 @@
         {#if project.imageUrl}
           <img src={project.imageUrl} alt="" />
         {:else}
-          <div class="hero__fill" style="background: {getGradientColor(project.name)}"></div>
+          <div class="hero__fill" style="background: {getFallbackColor(project.name)}"></div>
         {/if}
       </header>
 
