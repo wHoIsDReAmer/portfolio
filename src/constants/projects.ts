@@ -104,7 +104,7 @@ export const projects: Project[] = [
         shortDescription: "Rust based RAT(Remote Access Trojan)",
         date: "2022-07-01",
         description: "Rust로 만든 RAT(Remote Access Trojan)입니다. PoC 목적으로 만들었습니다.<br>통신 구조에 대해 생각할 점이 많았고, 트로이목마의 특징을 고려해야 했습니다.",
-        imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_J2yeZ5eobpiCbv_6DgjHK_tDIKIm2EDt4g&s",
+        imageUrl: null,
         techStack: ["Rust", "egui"],
         learnedThing: [
             "어떻게 하면 의심가지 않는 I/O 동작을 하게 할 수 있는지 배웠습니다.",
