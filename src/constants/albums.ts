@@ -107,4 +107,18 @@ export const albums: Album[] = [
 		coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a2/9f/a9/a29fa9f2-f9a7-6e9c-8a96-0e0fd8774cad/cover_KM0020966_1.jpg/600x600bb.jpg',
 		labelColor: '#7ea4c4',
 	},
+	{
+		title: '노비츠키',
+		artist: '빈지노',
+		year: 2023,
+		coverUrl: 'https://cdn-images.dzcdn.net/images/cover/5206c2f0ff49e2b3d34ee1504f7cb1bf/500x500-000000-80-0-0.jpg',
+		labelColor: '#9da2ad',
+	},
+	{
+		title: '가로사옥',
+		artist: '쿤디판다',
+		year: 2020,
+		coverUrl: 'https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/19/4d/d2/194dd20f-8f0d-d14f-2e91-6e9a4e3ab86f/cover_-_resized.jpg/600x600bb.jpg',
+		labelColor: '#303347',
+	},
 ];
